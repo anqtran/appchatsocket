@@ -6,16 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
 
     <title>Socket chat!</title>
 </head>
 
 <body>
-    <h1>Hello, world!</h1>
+
+    <div id="enterUsername" class="container">
+        <div class="form-group">
+            <input type="text" id="username" class="form-control" placeholder="ENTER USERNAME">
+            <br>
+            <a href="" id="enterChat" class="btn btn-primary">Enter chat</a>
+        </div>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="client.js"></script>
+    <script>
+    $(function () {
+        $("input#username").focus();
+    });
+    </script>
 </body>
 
 </html>

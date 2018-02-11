@@ -1,0 +1,14 @@
+div#enterUsername {
+    width: 500px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+input#username {
+    width: 500px;
+    height: 70px;
+    text-align: center;
+}
