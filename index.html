@@ -21,6 +21,35 @@
         </div>
     </div>
 
+    <div id="chatMain" class="container hidden">
+
+        <h1 class="display-4">Chat</h1>
+
+        <div id="mainInner" class="row">
+            <div id="chatWindows" class="col-9">
+                <div id="publicChat" class="chatroom active"></div>
+            </div>
+            <div id="userList" class="col-3">
+                <ul></ul>
+            </div>
+        </div>
+
+        <div id="rooms" class="row">
+            <div id="mainroom" class="active">
+                Public Chat
+            </div>
+        </div>
+
+        <div class="row">
+            <br>
+            <br>
+            <div class="col-6">
+                <textarea name="" id="chatText" cols="30" rows="10" class="form-control" placeholder="Enter chat message"></textarea>
+            </div>
+        </div>
+
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="client.js"></script>
