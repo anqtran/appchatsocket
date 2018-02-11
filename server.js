@@ -23,6 +23,15 @@ MongoClient.connect(url, function (err, db) {
 
         console.log('Connected to socket.io, ID: ' + socket.id);
 
+        /*
+        * Handle enter chat / log on
+        */
+        socket.on("username", function (username) {
+            console.log(username);
+
+
+        });
+
     });
 
 
