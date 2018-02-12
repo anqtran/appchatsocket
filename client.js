@@ -20,6 +20,14 @@ $(function () {
             $("div#enterUsername").addClass('hidden');
             $("div#chatMain").removeClass('hidden');
 
+            socket.on('users', function (data) {
+                data.forEach(element => {
+                    if ( ! $("li#" + element.socketID).length && $("div#userList li").text() != element.username) {
+                        $("div#userList ul").append('<li id="' + element.socketID + '">' + element.username + '</li>');
+                    }
+                });
+            });
+
         } else {
             alert('You must enter a username!')
         }
@@ -39,8 +47,8 @@ $(function () {
                 alert('You must enter a username!')
             }
         }
-        
-         
+
+
     });
 
     /*
@@ -54,7 +62,7 @@ $(function () {
     * Handle log off
     */
     socket.on('logoff', function (id) {
-        $("li#"+id).remove();
+        $("li#" + id).remove();
         localStorage.removeItem("username");
     });
 

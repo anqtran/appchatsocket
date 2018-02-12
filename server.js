@@ -29,6 +29,11 @@ MongoClient.connect(url, function (err, db) {
         socket.on("username", function (username) {
             console.log(username);
 
+            users.find().toArray(function (err, res) {
+                if (err) throw err;
+                socket.emit('users', res); 
+            });
+
             users.insertOne({socketID: socket.id, username: username});
 
             socket.broadcast.emit('logon', {
