@@ -51,7 +51,14 @@ MongoClient.connect(url, function (err, db) {
             users.deleteOne({socketID: socket.id}, function () {
                 socket.broadcast.emit('logoff', socket.id);
             });
-        })
+        });
+
+        /*
+        * Handle chat input
+        */
+        socket.on('input', function (data) {
+            messages.insertOne({username: data.username, message: data.message, date: data.date});
+        });
 
     });
 

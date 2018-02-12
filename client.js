@@ -66,4 +66,32 @@ $(function () {
         localStorage.removeItem("username");
     });
 
+    /*
+    * Handle chat input
+    */
+    $("#chatText").keypress(function (e) {
+
+        if (e.which == 13) {
+            let message = $("#chatText").val();
+            let windowID = $("div#chatWindows div.active").attr('id');
+
+            if (message != "") {
+
+                socket.emit('input', {
+                    username: localStorage.getItem("username"),
+                    message: message,
+                    date: moment().format("DD/MM/YYYY HH:mm"),
+                    windowID: windowID
+                });
+
+            $("#chatText").val("");
+            e.preventDefault();
+
+            } else {
+                alert('You must enter a message');
+            }
+        }        
+
+    });
+
 });
