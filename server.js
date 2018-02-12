@@ -37,6 +37,17 @@ MongoClient.connect(url, function (err, db) {
             });
         });
 
+        /*
+        * Handle log on
+        */
+        socket.on('disconnect', function () {
+            console.log('User ' + socket.id + ' disconnected!');
+
+            users.deleteOne({socketID: socket.id}, function () {
+                socket.broadcast.emit('logoff', socket.id);
+            });
+        })
+
     });
 
 
