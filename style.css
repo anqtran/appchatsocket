@@ -48,3 +48,9 @@ div#rooms > div {
     padding: 15px;
     position: relative;
 }
+
+textarea#chatText {
+    width: 850px;
+    height: 100px;
+    margin-top: 30px;
+}

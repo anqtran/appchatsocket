@@ -94,4 +94,11 @@ $(function () {
 
     });
 
+    /*
+    * Handle output
+    */
+    socket.on('output', function (data) {
+        $("div#chatWindows div#"+data.windowID).append("<p>[" + data.date + "] <b>" + data.username +  "</b>: " + data.message + "</p>");
+    });
+
 });

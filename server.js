@@ -58,6 +58,8 @@ MongoClient.connect(url, function (err, db) {
         */
         socket.on('input', function (data) {
             messages.insertOne({username: data.username, message: data.message, date: data.date});
+
+            io.emit('output', data);
         });
 
     });
