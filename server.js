@@ -34,6 +34,11 @@ MongoClient.connect(url, function (err, db) {
                 socket.emit('users', res); 
             });
 
+            messages.find().toArray(function (err, res) {
+                if (err) throw err;
+                socket.emit('messages', res); 
+            });
+
             users.insertOne({socketID: socket.id, username: username});
 
             socket.broadcast.emit('logon', {

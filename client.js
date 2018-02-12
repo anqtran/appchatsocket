@@ -101,4 +101,13 @@ $(function () {
         $("div#chatWindows div#"+data.windowID).append("<p>[" + data.date + "] <b>" + data.username +  "</b>: " + data.message + "</p>");
     });
 
+    /*
+    * Load chat messages
+    */
+    socket.on('messages', function (data) {
+        data.forEach(element => {
+            $("div#publicChat").append("<p>[" + element.date + "] <b>" + element.username +  "</b>: " + element.message + "</p>");
+        });
+    });
+
 });
