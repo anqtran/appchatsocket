@@ -157,7 +157,13 @@ $(function () {
     * Handle second user trigger
     */
     socket.on('secondUserChatWindow', function (data) {
-        console.log(data);
+        if ( $("div#"+data.from).length ) return;
+
+        $("div#rooms > div").removeClass('active');
+        $("div#chatWindows > div").removeClass('active');
+
+        $("div#rooms").append("<div id=" + data.from + " class='active'>" + "<span>x</span>" + data.from + "</div>");
+        $("div#chatWindows").append("<div id=" + data.from + "-" + data.secondUsername + " class='chatroom active'></div>");
     });
 
 });
