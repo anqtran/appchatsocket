@@ -166,4 +166,27 @@ $(function () {
         $("div#chatWindows").append("<div id=" + data.from + "-" + data.secondUsername + " class='chatroom active'></div>");
     });
 
+    /*
+    * Choose room
+    */
+    $("div#rooms").on("click", "div", function () {
+
+        $("div#rooms > div").removeClass('active');
+        $("div#chatWindows > div").removeClass('active');
+
+        $(this).addClass('active');
+        $(this).removeClass('new');
+
+        if ( $("div#mainroom").hasClass('active') ) {
+            $("#publicChat").addClass('active');
+        } else {
+
+            let firstUsername = localStorage.getItem("username");
+            let secondUsername = $(this).attr('id');
+
+            $("div#chatWindows div#"+firstUsername + "-" + secondUsername).addClass('active');
+            $("div#chatWindows div#"+secondUsername + "-" + firstUsername).addClass('active');
+        }
+    });
+
 });
