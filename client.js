@@ -72,10 +72,34 @@ $(function () {
     $("#chatText").keypress(function (e) {
 
         if (e.which == 13) {
+
             let message = $("#chatText").val();
             let windowID = $("div#chatWindows div.active").attr('id');
+            let publicChat = true;7
+            let secondUsername = false;
+            let secondUserID;
+            let data;
 
             if (message != "") {
+
+                if (! ($("#publicChat").hasClass('active'))) {
+                    publicChat = false;
+                    let usersDiv = $("div.chatroom.active").attr('id');
+                    let userArray = usersDiv.split("-");
+
+                    secondUsername = userArray[1];
+                    secondUserID = $("li:contains(" + secondUsername + ")").attr('id');
+
+                    data = {
+                        from: localStorage.getItem("username"),
+                        message: message,
+                        date: moment().format("DD/MM/YYYY HH:mm"),
+                        secondUserID: secondUserID,
+                        secondUsername: secondUsername                    
+                    };
+
+                    socket.emit('secondUserTrigger', data);
+                }
 
                 socket.emit('input', {
                     username: localStorage.getItem("username"),
