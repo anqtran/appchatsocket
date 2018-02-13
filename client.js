@@ -28,6 +28,8 @@ $(function () {
                 });
             });
 
+            $('div.chatroom.active').animate({scrollTop: $('div.chatroom.active').prop('scrollHeight')}, 1000);
+            
         } else {
             alert('You must enter a username!')
         }
@@ -123,7 +125,18 @@ $(function () {
     * Handle output
     */
     socket.on('output', function (data) {
+
+        if (data.publicChat && ! $("div#mainroom").hasClass('active')) {
+            $("div#mainroom").addClass('new');
+        } else {
+            if (! $("div#"+data.windowID).hasClass('active')) {
+                $("div#rooms div#"+data.username).addClass('new');
+            }
+        }
+
         $("div#chatWindows div#"+data.windowID).append("<p>[" + data.date + "] <b>" + data.username +  "</b>: " + data.message + "</p>");
+
+        $('div.chatroom.active').animate({scrollTop: $('div.chatroom.active').prop('scrollHeight')}, 1000);
     });
 
     /*
