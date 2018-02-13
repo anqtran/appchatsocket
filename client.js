@@ -105,7 +105,8 @@ $(function () {
                     username: localStorage.getItem("username"),
                     message: message,
                     date: moment().format("DD/MM/YYYY HH:mm"),
-                    windowID: windowID
+                    windowID: windowID,
+                    publicChat: publicChat
                 });
 
             $("#chatText").val("");
@@ -150,6 +151,13 @@ $(function () {
 
         $("div#rooms").append("<div id=" + receiverUsername + " class='active'>" + "<span>x</span>" + receiverUsername + "</div>");
         $("div#chatWindows").append("<div id=" + senderUsername + "-" + receiverUsername + " class='chatroom active'></div>");
+    });
+
+    /*
+    * Handle second user trigger
+    */
+    socket.on('secondUserChatWindow', function (data) {
+        console.log(data);
     });
 
 });

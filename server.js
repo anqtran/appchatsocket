@@ -62,9 +62,19 @@ MongoClient.connect(url, function (err, db) {
         * Handle chat input
         */
         socket.on('input', function (data) {
-            messages.insertOne({username: data.username, message: data.message, date: data.date});
+
+            if (data.publicChat) {
+                messages.insertOne({username: data.username, message: data.message, date: data.date});
+            }
 
             io.emit('output', data);
+        });
+
+        /*
+        * Handle second user trigger
+        */
+        socket.on('secondUserTrigger', function (data) {
+            socket.to(data.secondUserID).emit('secondUserChatWindow', data);
         });
 
     });
