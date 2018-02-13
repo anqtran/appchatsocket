@@ -110,4 +110,22 @@ $(function () {
         });
     });
 
+    /*
+    * Handle private chat 
+    */
+    $(document).on("dblclick", "div#userList li", function () {
+
+        let socketID = $(this).attr('id');
+        let senderUsername = localStorage.getItem("username");
+        let receiverUsername = $(this).text();
+
+        $("#chatText").focus();
+
+        $("div#rooms > div").removeClass('active');
+        $("div#chatWindows > div").removeClass('active');
+
+        $("div#rooms").append("<div id=" + receiverUsername + " class='active'>" + "<span>x</span>" + receiverUsername + "</div>");
+        $("div#chatWindows").append("<div id=" + senderUsername + "-" + receiverUsername + " class='chatroom active'></div>");
+    });
+
 });

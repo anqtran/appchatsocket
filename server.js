@@ -48,7 +48,7 @@ MongoClient.connect(url, function (err, db) {
         });
 
         /*
-        * Handle log on
+        * Handle log off
         */
         socket.on('disconnect', function () {
             console.log('User ' + socket.id + ' disconnected!');
