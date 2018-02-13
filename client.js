@@ -202,4 +202,24 @@ $(function () {
         }
     });
 
+    /*
+    * Close private chat
+    */
+    $("div#rooms").on('click', 'span', function (e) {
+        e.stopPropagation();
+
+        let firstUsername = localStorage.getItem("username");
+        let secondUsername = $(this).parent().attr('id');
+
+        $("div#chatWindows div#"+firstUsername + "-" + secondUsername).remove();
+        $("div#chatWindows div#"+secondUsername + "-" + firstUsername).remove();
+
+        $(this).parent().remove();
+
+        if ( $("div#rooms > div").length == 1 ) {
+            $("div#mainroom").addClass('active');
+            $("div#publicChat").addClass('active');
+        }
+    });
+
 });
