@@ -104,7 +104,7 @@ $(function () {
                         secondUsername: secondUsername                    
                     };
 
-                    console.log(data);
+                    // console.log(data);
                     socket.emit('secondUserTrigger', data);
                 }
 
@@ -139,7 +139,14 @@ $(function () {
             }
         }
 
-        $("div#chatWindows div#"+data.windowID).append("<p>[" + data.date + "] <b>" + data.username +  "</b>: " + data.message + "</p>");
+        if ( $("div#chatWindows div#"+data.windowID).length ) {
+            $("div#chatWindows div#"+data.windowID).append("<p>[" + data.date + "] <b>" + data.username +  "</b>: " + data.message + "</p>");
+        } else {
+            let userArray = data.windowID.split("-");
+            // console.log(userArray[0]);
+            // console.log(userArray[1]);
+            $("div#chatWindows div#"+userArray[1] + "-" + userArray[0]).append("<p>[" + data.date + "] <b>" + data.username +  "</b>: " + data.message + "</p>");
+        }
 
         $('div.chatroom.active').animate({scrollTop: $('div.chatroom.active').prop('scrollHeight')}, 1000);
     });
