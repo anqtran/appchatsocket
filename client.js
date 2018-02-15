@@ -91,6 +91,10 @@ $(function () {
 
                     secondUsername = userArray[1];
                     secondUserID = $("li:contains(" + secondUsername + ")").attr('id');
+                    if (! secondUserID) {
+                        secondUsername = userArray[0];
+                        secondUserID = $("li:contains(" + secondUsername + ")").attr('id');
+                    }
 
                     data = {
                         from: localStorage.getItem("username"),
@@ -100,6 +104,7 @@ $(function () {
                         secondUsername: secondUsername                    
                     };
 
+                    console.log(data);
                     socket.emit('secondUserTrigger', data);
                 }
 
@@ -167,9 +172,10 @@ $(function () {
     });
 
     /*
-    * Handle second user trigger
+    * Handle second user chat window
     */
     socket.on('secondUserChatWindow', function (data) {
+        // console.log(data);
         if ( $("div#"+data.from).length ) return;
 
         $("div#rooms > div").removeClass('active');
