@@ -131,22 +131,24 @@ $(function () {
     */
     socket.on('output', function (data) {
 
+        let windowID;
+
+        if (! $("div#chatWindows div#"+data.windowID).length ) {
+            let userArray = data.windowID.split("-");
+            windowID = userArray[1] + "-" + userArray[0];
+        } else {
+            windowID = data.windowID;
+        }
+
         if (data.publicChat && ! $("div#mainroom").hasClass('active')) {
             $("div#mainroom").addClass('new');
         } else {
-            if (! $("div#"+data.windowID).hasClass('active')) {
+            if (! $("div#"+windowID).hasClass('active')) {
                 $("div#rooms div#"+data.username).addClass('new');
             }
         }
 
-        if ( $("div#chatWindows div#"+data.windowID).length ) {
-            $("div#chatWindows div#"+data.windowID).append("<p>[" + data.date + "] <b>" + data.username +  "</b>: " + data.message + "</p>");
-        } else {
-            let userArray = data.windowID.split("-");
-            // console.log(userArray[0]);
-            // console.log(userArray[1]);
-            $("div#chatWindows div#"+userArray[1] + "-" + userArray[0]).append("<p>[" + data.date + "] <b>" + data.username +  "</b>: " + data.message + "</p>");
-        }
+        $("div#chatWindows div#"+windowID).append("<p>[" + data.date + "] <b>" + data.username +  "</b>: " + data.message + "</p>");
 
         $('div.chatroom.active').animate({scrollTop: $('div.chatroom.active').prop('scrollHeight')}, 1000);
     });
