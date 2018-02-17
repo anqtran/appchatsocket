@@ -173,6 +173,11 @@ $(function () {
 
         $("#chatText").focus();
 
+        if ( $("div#rooms div#"+receiverUsername).length ) {
+            $("div#rooms div#"+receiverUsername).click();
+            return;
+        }
+
         $("div#rooms > div").removeClass('active');
         $("div#chatWindows > div").removeClass('active');
 
