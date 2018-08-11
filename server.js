@@ -6,18 +6,6 @@ const messages = require('./models/Message');
 const db = require("./config/keys").mongoURI;
 
 
-/*
-* Connect to MongoDB
-*/
-// MongoClient.connect(url, function (err, db) {
-//     if (err) throw err;
-//     console.log('Connected to MongoDB');
-
-//     // Set db constants
-//     const socketchat = db.db('socketchat');
-//     const users = socketchat.collection('users');
-//     const messages = socketchat.collection('messages');
-
 mongoose
   .connect(
     db,
