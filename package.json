@@ -1,5 +1,5 @@
 {
-  "name": "socketchat",
+  "name": "App Chat",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -7,10 +7,11 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "An Tran and Kiet Tran",
   "license": "ISC",
   "dependencies": {
     "mongodb": "^3.0.2",
-    "socket.io": "^2.0.4"
+    "socket.io": "^2.0.4",
+    "mongoose": "^5.2.5"
   }
 }
