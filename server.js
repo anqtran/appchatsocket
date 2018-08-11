@@ -1,10 +1,9 @@
 //const MongoClient = require('mongodb').MongoClient;
-const io = require('socket.io').listen(4000);
+const io = require('socket.io').listen(process.env.PORT || 4000);
 const mongoose = require("mongoose");
 const users = require('./models/User');
 const messages = require('./models/Message');
 const db = require("./config/keys").mongoURI;
-
 
 mongoose
   .connect(
