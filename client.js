@@ -77,7 +77,7 @@ $(function () {
 
             let message = $("#chatText").val();
             let windowID = $("div#chatWindows div.active").attr('id');
-            let publicChat = true;7
+            let publicChat = true;
             let secondUsername = false;
             let secondUserID;
             let data;

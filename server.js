@@ -27,8 +27,6 @@ io.on('connection', function (socket) {
     * Handle enter chat / log on
     */
     socket.on("username", function (username) {
-        console.log(username);
-        console.log(users);
 
         users.find(function (err, res) {
             if (err) throw err;
@@ -62,6 +60,12 @@ io.on('connection', function (socket) {
         users.deleteOne({socketID: socket.id}, function () {
             socket.broadcast.emit('logoff', socket.id);
         });
+
+        users.count(function(err, res) {
+            if (err) throw err;
+            if( res == 0)
+                messages.remove({});
+        })
     });
 
     /*
