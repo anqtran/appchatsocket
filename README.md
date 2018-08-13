@@ -1,7 +1,9 @@
 # appchatsocket
 A real time Chat App implemented with socket.io where you're having either:
+
   - Private conversations
   - Group conversations
+
 The goal of this app is a sense of getting familiar with socket.io and building powerful highly interactive real time applications
 
 ## How this works
